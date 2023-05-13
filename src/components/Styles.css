@@ -32,11 +32,17 @@ body {
     flex: 1;
 }
 
+.navbrand-container {
+    margin: .8rem;
+}
+
 .navbrand {
     background-color:#374151;
     box-shadow: 5px 4px 10px rgb(10, 10, 10);
     border-radius: 2rem;
     justify-content: center;
+    margin: .7rem;
+    margin-left: 3rem;
 }
 
 .navbrand > h6 {
@@ -125,9 +131,22 @@ body {
     overflow-y: scroll;
 }
 
+.chat-list::-webkit-scrollbar {
+    width: .6rem;
+    height: fit-content;
+}
+
+.chat-list::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+    background-color: #687280;
+    border-radius: 1rem;
+}
+
 .chat-list > h5 {
     font-weight: 700;
-    font-size: medium;
     margin-bottom: 20px;
     margin-top: 20px;
 }
@@ -135,6 +154,17 @@ body {
 .chat-list > a {
     align-items: center;
     font-weight: 600;
+}
+
+.span {
+    font-size: large;
+    font-weight: 600;
+}
+
+.Answer-container {
+    background-color: #111827;
+    border-radius: .6rem;
+    box-shadow: inset 2px 4px 13px black ;
 }
 
 .generate-wrapper {
@@ -157,4 +187,12 @@ body {
 
 .Answer > a{
     font-weight: 700;
+}
+
+.generate.btn:hover {
+    background-color: #8B5Cf6;
+}
+
+.Answer.btn:hover {
+    background-color: #8B5Cf6;
 }
