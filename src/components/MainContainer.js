@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './Styles.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import newbtn from '../icons/add.png'; 
 
 
-export class MainContainer extends Component {
-  render() {
-    return (
-      <div className = 'Main-content container-fluid'>
+
+const MainContainer = () => {
+  const [isShowAnswers, setShowAnswers] = useState(false)
+  
+  const handleShowAnswers = () => setShowAnswers(!isShowAnswers)
+  
+  return (
+        <div className = 'Main-content container-fluid'>
         <div className = 'Navigation-widget navbar'>
             <div className = 'Nav-contents'>
                 <div className = 'navbrand-container'>
@@ -67,9 +71,11 @@ export class MainContainer extends Component {
 
                     <span className = 'span'>Ans:</span>
 
-                    <div id="answer-section" style="display: none;" className = 'Answer-container d-flex p-2'>
-                    <a>Answer 1</a> 
-                    </div>
+                    {isShowAnswers && (
+                        <div id="answer-section" className = 'Answer-container d-flex p-2'>
+                            <a>Answer 1</a> 
+                        </div>
+                    )}
                     
                 </ul>
                 </p>
@@ -77,32 +83,15 @@ export class MainContainer extends Component {
                     <div className = 'btn generate'>
                     <a>Generate questions</a>
                     </div>
-                    <div id="view-answers" onclick="toggleAnswers()" className = 'btn Answer d-flex'>
-                    <a>View Answer</a>
+                    <div id="view-answers" onClick={handleShowAnswers} className = 'btn Answer d-flex'>
+                        {isShowAnswers ? <a>Hide Answer</a> : <a>View Answer</a>}
                     </div>
                 </div>
             </div>
         </div>
-
-        <script>
-          function toggleAnswers() {
-            let answers =document.getElementsByClassName('Answer-container');
-            let button = document.getElementById("view-answers");
-
-            for (let i = 0; i < answers.length; i++) {
-                if (answers[i].style.display === "none") {
-                  answers[i].style.display = "block";
-                  button.innerHTML = "Hide Answers";
-                } else {
-                  answers[i].style.display = "none";
-                  button.innerHTML = "View Answers";
-                }
-            }
-          }
-        </script>
       </div>
-    )
-  }
+  )
 }
+
 
 export default MainContainer
