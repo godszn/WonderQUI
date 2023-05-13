@@ -83,8 +83,8 @@ const MainContainer = () => {
                     <div className = 'btn generate'>
                     <a>Generate questions</a>
                     </div>
-                    <div id="view-answers" onclick={handleShowAnswers} className = 'btn Answer d-flex'>
-                        {isShowAnswers ? <a>View Answer</a> : <a>Hide Answer</a>}
+                    <div id="view-answers" onClick={handleShowAnswers} className = 'btn Answer d-flex'>
+                        {isShowAnswers ? <a>Hide Answer</a> : <a>View Answer</a>}
                     </div>
                 </div>
             </div>
