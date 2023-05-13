@@ -71,9 +71,11 @@ const MainContainer = () => {
 
                     <span className = 'span'>Ans:</span>
 
-                    <div id="answer-section" style="display: none;" className = 'Answer-container d-flex p-2'>
-                    <a>Answer 1</a> 
-                    </div>
+                    {isShowAnswers && (
+                        <div id="answer-section" className = 'Answer-container d-flex p-2'>
+                            <a>Answer 1</a> 
+                        </div>
+                    )}
                     
                 </ul>
                 </p>
@@ -82,7 +84,7 @@ const MainContainer = () => {
                     <a>Generate questions</a>
                     </div>
                     <div id="view-answers" onclick={handleShowAnswers} className = 'btn Answer d-flex'>
-                    <a>View Answer</a>
+                        {isShowAnswers ? <a>View Answer</a> : <a>Hide Answer</a>}
                     </div>
                 </div>
             </div>
@@ -93,22 +95,3 @@ const MainContainer = () => {
 
 
 export default MainContainer
-
-
-
-//         <script>
-//           function toggleAnswers() {
-//             let answers =document.getElementsByClassName('Answer-container');
-//             let button = document.getElementById("view-answers");
-
-//             for (let i = 0; i < answers.length; i++) {
-//                 if (answers[i].style.display === "none") {
-//                   answers[i].style.display = "block";
-//                   button.innerHTML = "Hide Answers";
-//                 } else {
-//                   answers[i].style.display = "none";
-//                   button.innerHTML = "View Answers";
-//                 }
-//             }
-//           }
-//         </script>
