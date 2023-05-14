@@ -9,6 +9,49 @@ const MainContainer = () => {
   const [isShowAnswers, setShowAnswers] = useState(false)
   
   const handleShowAnswers = () => setShowAnswers(!isShowAnswers)
+
+  
+  const [fileContent, setSelectedFile] = useState('');
+
+  const handleFileSelect = (event) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setSelectedFile(event.target.result);
+    };
+    reader.readAsText(event.target.files[0])
+  };
+
+
+  const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
+
+  const requestBody = {
+    body: fileContent
+  }
+
+  const handleSubmit = async (e) => {
+    console.log("Trying to submit text data")
+    e.preventDefault();
+
+    try {
+        const response = await fetch("http://localhost:8000/api/v1/process-long-passage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+        });
+        const data = await response.json();
+        setQuestions(data.questions);
+        setAnswers(data.answers);
+
+        console.log(data)
+
+    } catch (error) {
+        console.error(error);
+    };
+  };
+  
   
   return (
         <div className = 'Main-content container-fluid'>
@@ -17,7 +60,7 @@ const MainContainer = () => {
                 <div className = 'navbrand-container'>
                     <div className = 'd-flex p-2 navbrand'>
                         <h6>
-                            Lorem-ipsum
+                            Wonder Q
                         </h6>
                     </div>
                 </div>
@@ -26,61 +69,48 @@ const MainContainer = () => {
             </div>
         </div>
         <div className = 'chat-widget d-flex p-1 m-3'>
+            
             <div className = 'd-flex justify-contents-start sidebar p-4 '>
-                <div className = 'btn d-flex p-2'>
+                {/* <div className = 'btn d-flex p-2'>
                     <a className = 'active p-2' href = '#Lorem-ipsum'>
-                        Lorem-ipsum
+                        
                     </a>
-                </div>
-                <div className = 'd-flex p-2 btn'>
-                    <a href = '#Lorem-ipsum'>
-                        Lorem-ipsum
-                    </a>
-                </div>
-                <div className = 'd-flex p-2 btn'>
-                    <a href = '#Lorem-ipsum'>
-                        Lorem-ipsum
-                    </a>
-                </div>
-                <div className = 'd-flex p-2 btn'>
-                    <a href = '#Lorem-ipsum'>
-                        Lorem-ipsum
-                    </a>
-                </div>
+                </div> */}
                 <div className = 'new-widget btn d-flex'>
-                    <img src = {newbtn} className = 'add'/>
-                    <a>
-                      New
-                    </a>
+                    <input type="file" name="Select File" accept="application/pdf" onChange={handleFileSelect} />
                 </div>
             </div>
+            
             <div className = 'detail-widget d-flex p-4'>
-              <p className = 'd-flex p-3'>
-                 <ul className = 'chat-list d-flex p-4 '><a>
-                    This is going to be the document preview page hhehehe
-                    </a>
-                </ul>
+              <p style={{ maxHeight: '670px', overflow: 'auto' }} className = 'd-flex p-3'>
+                {fileContent}
               </p>
             </div>
-            <div className = 'chatbox-widget d-flex p-4'>
-                <p className = 'd-flex chat-text p-4'>
-                <ul className = 'chat-list d-flex p-4 '>
-                    <h5>
-                        Question 1
-                    </h5>
+            
+            <div  style={{ maxHeight: '670px', overflow: 'auto' }} className = 'chatbox-widget d-flex p-4'>
+            {questions.map((question, index) => (
+                    <p key={index}  className = 'd-flex chat-text p-2'>
+                    <ul className = 'chat-list d-flex p-2'>
+                        <h5 key={question}>
+                            {question}
+                        </h5>
 
-                    <span className = 'span'>Ans:</span>
-
-                    {isShowAnswers && (
-                        <div id="answer-section" className = 'Answer-container d-flex p-2'>
-                            <a>Answer 1</a> 
-                        </div>
-                    )}
-                    
-                </ul>
-                </p>
+                        {isShowAnswers && (
+                            <div id="answer-section" className = 'Answer-container d-flex p-2'>
+                        
+                                <p>
+                                    {answers[index]}
+                                </p>
+                        
+                            </div>
+                        )}
+                        
+                    </ul>
+                    </p>
+                
+            ))}
                 <div className = 'generate-wrapper container-fluid d-flex p-4'>
-                    <div className = 'btn generate'>
+                    <div onClick={handleSubmit} className = 'btn generate'>
                     <a>Generate questions</a>
                     </div>
                     <div id="view-answers" onClick={handleShowAnswers} className = 'btn Answer d-flex'>
