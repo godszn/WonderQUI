@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Styles.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import newbtn from '../icons/add.png'; 
+// import newbtn from '../icons/add.png'; 
 
 
 
@@ -77,7 +77,7 @@ const MainContainer = () => {
                     </a>
                 </div> */}
                 <div className = 'new-widget btn d-flex'>
-                    <input type="file" name="Select File" accept="application/pdf" onChange={handleFileSelect} />
+                    <input type="file" name="Select File" onChange={handleFileSelect} />
                 </div>
             </div>
             
@@ -87,29 +87,31 @@ const MainContainer = () => {
               </p>
             </div>
             
-            <div  style={{ maxHeight: '670px', overflow: 'auto' }} className = 'chatbox-widget d-flex p-4'>
-            {questions.map((question, index) => (
-                    <p key={index}  className = 'd-flex chat-text p-2'>
-                    <ul className = 'chat-list d-flex p-2'>
-                        <h5 key={question}>
-                            {question}
-                        </h5>
+            <div style={{ maxHeight: '760px', overflow: 'auto' }}  className = 'chatbox-widget d-flex p-4'>
+                 
+                {questions.map((question, index) => (
+                        <p key={index}  className = 'd-flex chat-text p-2'>
+                        <ul className = 'chat-list d-flex p-2'>
+                            <h5 key={question}>
+                                {question}
+                            </h5>
 
-                        {isShowAnswers && (
-                            <div id="answer-section" className = 'Answer-container d-flex p-2'>
-                        
-                                <p>
-                                    {answers[index]}
-                                </p>
-                        
-                            </div>
-                        )}
-                        
-                    </ul>
-                    </p>
-                
-            ))}
-                <div className = 'generate-wrapper container-fluid d-flex p-4'>
+                            {isShowAnswers && (
+                                <div id="answer-section" className = 'Answer-container d-flex p-2'>
+                            
+                                    <p>
+                                        {answers[index]}
+                                    </p>
+                            
+                                </div>
+                            )}
+                            
+                        </ul>
+                        </p>
+                    
+                ))}
+            
+                <div style={{ maxHeight: '90px' }} className = 'generate-wrapper container-fluid d-flex p-4'>
                     <div onClick={handleSubmit} className = 'btn generate'>
                     <a>Generate questions</a>
                     </div>
