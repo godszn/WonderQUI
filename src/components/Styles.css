@@ -219,3 +219,14 @@ body {
     background-color: #A6D0DD;
 }
 
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loader-text {
+    font-size: 24px;
+    font-weight: bold;
+  }

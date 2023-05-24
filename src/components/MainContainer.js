@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Styles.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClipLoader from "react-spinners/ClipLoader";
 // import newbtn from '../icons/add.png'; 
 
 
@@ -10,7 +11,10 @@ const MainContainer = () => {
   
   const handleShowAnswers = () => setShowAnswers(!isShowAnswers)
 
+  const [isLoading, setIsLoading] = useState(false)
+  const [color, setColor] = useState("#FF6969");
   
+
   const [fileContent, setSelectedFile] = useState('');
 
   const handleFileSelect = (event) => {
@@ -30,6 +34,8 @@ const MainContainer = () => {
   }
 
   const handleSubmit = async (e) => {
+    setIsLoading(true)
+
     console.log("Trying to submit text data")
     e.preventDefault();
 
@@ -50,6 +56,8 @@ const MainContainer = () => {
     } catch (error) {
         console.error(error);
     };
+
+    setIsLoading(false)
   };
   
   
@@ -110,7 +118,7 @@ const MainContainer = () => {
                         </p>
                     
                 ))}
-            
+
                 <div style={{ maxHeight: '90px' }} className = 'generate-wrapper container-fluid d-flex p-4'>
                     <div onClick={handleSubmit} className = 'btn generate'>
                     <a>Generate questions</a>
@@ -119,6 +127,32 @@ const MainContainer = () => {
                         {isShowAnswers ? <a>Hide Answer</a> : <a>View Answer</a>}
                     </div>
                 </div>
+            
+                
+                {isLoading && <div> 
+                <br>
+                </br>
+                <br>
+                </br>
+                <br>
+                </br>
+                <br>
+                </br>
+                <br>
+                </br>
+                <br>
+                </br>
+                    
+                                    <ClipLoader
+                                        color={color}
+                                        loading={isLoading}
+                                        size={100}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                    />
+                                    </div>}
+
+
             </div>
         </div>
       </div>
