@@ -18,7 +18,7 @@ body {
 }
 
 .Main-content {
-    background-color:#374151;
+    background-color:#FFF9DE;
     height: 160vh;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 .navbrand {
-    background-color:#374151;
+    background-color:#A6D0DD;
     box-shadow: 5px 4px 10px rgb(10, 10, 10);
     border-radius: 2rem;
     justify-content: center;
@@ -46,14 +46,14 @@ body {
 }
 
 .navbrand > h6 {
-   color: cadetblue;
-   font-weight: 700;
+   color: #000;
+   font-weight: 400;
    margin: 0;
 }
 
 .dummy-img {
     border-radius: 50%;
-    background-color: #111827;
+    background-color: #9eb0d6;
     display: flex;
     width: 25px;
     height: fit-content;
@@ -91,13 +91,13 @@ body {
 }
 
 .chat-widget {
-    background-color: #111827;
+    background-color: #A6D0DD;
     border-radius: 2rem;
     box-shadow: 4px 5px 15px aliceblue;
 }
 
 .detail-widget {
-    background-color: #FFF;
+    background-color: #FFF9DE;
     border-radius: 2rem;
     margin: 2rem;
     width: 50%;
@@ -108,27 +108,47 @@ body {
 }
 
 .chatbox-widget {
-    background-color: #687280;
+    background-color: #FFF9DE;
+    box-shadow: 2px 4px 13px #111827;
     border-radius: 2rem;
     margin: 2rem;
     width: 50%;
     flex-direction: column;
-    flex-direction: column;
+    
 }
+
+.chatbox-widget::-webkit-scrollbar {
+    width: .0rem;
+    height: 80%;
+}
+
+.chatbox-widget::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.chatbox-widget::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 1rem;
+}
+
 
 .chat-text {
     text-align: start;
-    height: 585px;
     flex-direction: column;
-    background-color: #374151;
+    background-color: #FF6969;
     box-shadow: 2px 4px 13px #111827;
     border-radius: 1.5rem;
     color: #FFF;
+    height: auto;
+    max-height: fit-content;
 }
 
 .chat-list {
+    height: auto;
+    max-height: fit-content;
     flex-direction: column;
     overflow-y: scroll;
+    overflow: auto;
 }
 
 .chat-list::-webkit-scrollbar {
@@ -162,23 +182,25 @@ body {
 }
 
 .Answer-container {
-    background-color: #111827;
+    background-color: #A6D0DD;
     border-radius: .6rem;
-    box-shadow: inset 2px 4px 13px black ;
+    color: #000000;
+    box-shadow: 1px 1px 1px 1px black ;
 }
 
 .generate-wrapper {
     justify-content: space-between;
     flex: 1;
-    background-color: #1F2937;
+    background-color: #FF6969;
     border-radius: 1.5rem;
     height: 20%;
+
 }
 
 .generate-wrapper > .btn {
-  background-color: #111827;
+  background-color: #FFD3B0;
   width: fit-content;
-  color: #8B5Cf6;
+  color: #000000;
 }
 
 .generate > a {
@@ -190,9 +212,21 @@ body {
 }
 
 .generate.btn:hover {
-    background-color: #8B5Cf6;
+    background-color: #A6D0DD;
 }
 
 .Answer.btn:hover {
-    background-color: #8B5Cf6;
+    background-color: #A6D0DD;
 }
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loader-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
